@@ -1,0 +1,65 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+  - url: http://localhost:8080
+    description: Generated server url
+tags:
+  - name: CryptoCurrencyController
+    description: Controller to work with crypto currency
+paths:
+  /api/cryptoCurrency:
+    get:
+      tags:
+        - CryptoCurrencyController
+      summary: Get all crypto currencies
+      description: Allows you to get a list of all cryptocurrencies
+      operationId: currencyList
+      responses:
+        "200":
+          description: Found the users
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CryptoCurrency'
+  /api/cryptoCurrency/{cryptoCurrencyId}:
+    get:
+      tags:
+        - CryptoCurrencyController
+      summary: Get crypto currency by id
+      description: Allows you to get crypto currency by id
+      operationId: currency
+      parameters:
+        - name: cryptoCurrencyId
+          in: path
+          description: Crypto currency id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Found the user
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CryptoCurrency'
+components:
+  schemas:
+    CryptoCurrency:
+      type: object
+      properties:
+        cryptoCurrencyId:
+          type: string
+          description: Key of crypto currency
+          readOnly: true
+        name:
+          type: string
+          description: Name of crypto currency
+        price:
+          type: number
+          description: Price of crypto currency
+          format: double
+      description: Essence of cryptocurrency
