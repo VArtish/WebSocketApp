@@ -2,6 +2,7 @@ package com.example.websocketproject.model.service.impl;
 
 import com.example.websocketproject.model.entity.CryptoCurrency;
 import com.example.websocketproject.model.mapper.CryptoCurrencyJsonMapper;
+import com.example.websocketproject.model.repository.CryptoCurrencyJdbcRepository;
 import com.example.websocketproject.model.repository.CryptoCurrencyRepository;
 import com.example.websocketproject.model.service.CryptoCurrencyService;
 import com.example.websocketproject.model.service.RestTemplateService;
@@ -18,14 +19,14 @@ import java.util.Optional;
 
 @Service
 public class CryptoCurrencyServiceImpl implements CryptoCurrencyService {
-    private final CryptoCurrencyRepository currencyRepository;
+    private final CryptoCurrencyJdbcRepository currencyRepository;
     private final RestTemplateService restTemplateService;
     private final SimpMessagingTemplate messagingTemplate;
     private static final String PART_URN = "/v1/tickers";
     private static final Logger LOGGER = LogManager.getLogger(CryptoCurrencyServiceImpl.class);
 
     @Autowired
-    public CryptoCurrencyServiceImpl(RestTemplateService restTemplateService, SimpMessagingTemplate messagingTemplate, CryptoCurrencyRepository currencyRepository) {
+    public CryptoCurrencyServiceImpl(RestTemplateService restTemplateService, SimpMessagingTemplate messagingTemplate, CryptoCurrencyJdbcRepository currencyRepository) {
         this.restTemplateService = restTemplateService;
         this.messagingTemplate = messagingTemplate;
         this.currencyRepository = currencyRepository;

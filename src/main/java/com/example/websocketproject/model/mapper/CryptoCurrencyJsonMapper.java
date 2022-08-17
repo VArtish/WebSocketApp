@@ -22,6 +22,9 @@ public class CryptoCurrencyJsonMapper {
     private static final String USD = "USD";
     private static final String PRICE = "price";
 
+    private CryptoCurrencyJsonMapper() {
+    }
+
     public static List<CryptoCurrency> map(String json) {
         List<CryptoCurrency> currencies = new ArrayList<>();
         try {
